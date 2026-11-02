@@ -93,7 +93,7 @@ main{padding-bottom:70px}
 <section class="sec"><h2>Mobile wallets</h2><div class="wg" id="wg"></div></section>
 
 <section class="sec"><h2>Bangla QR</h2>
-<div class="card qrrow"><div class="qr" id="qr"></div><p class="hint" style="max-width:260px">Scan with any Bangla QR enabled banking or wallet app.</p></div></section>
+<div class="card qrrow"><div class="qr" id="qr-container"></div><p class="hint" style="max-width:260px">Scan with any Bangla QR enabled banking or wallet app.</p></div></section>
 
 <section class="sec"><h2>Crypto</h2>
 <div class="card">
@@ -150,8 +150,9 @@ $('#wg').innerHTML=CONFIG.wallets.map((w,i)=>`<div class="w"><div class="w-h"><s
 $('#wg').onclick=e=>{const b=e.target.closest('.ib');if(b){const w=CONFIG.wallets[+b.dataset.i];copy(w.number,w.name+' number',b)}};
 
 /* QR */
-$('#qr').innerHTML=CONFIG.qrImage?`<img src="${CONFIG.qrImage}" alt="Bangla QR code for donations">`:`<div>${ico('qr')}<p style="margin-top:8px;font-weight:600">QR coming soon</p></div>`;
-
+$('#qr-container').innerHTML = CONFIG.qrImage
+  ? `<img src="${CONFIG.qrImage}" alt="Bangla QR code for donations">`
+  : `<div>${ico('qr')}<p style="margin-top:8px;font-weight:600">QR coming soon</p></div>`;
 /* crypto */
 let tok=CONFIG.tokens[0];
 function tokens(){
