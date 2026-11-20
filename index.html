@@ -2,125 +2,140 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Support Pabel's Projects</title>
-<meta name="description" content="Support the tools and apps built by Tasfiqul Alam Pabel via bKash, Nagad, Upay, Pathao Pay, Bangla QR or crypto on Avalanche C-Chain.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Support Pabel's projects</title>
+<meta name="description" content="Support the free tools and apps built by Tasfiqul Alam Pabel. bKash, Nagad, Upay, Rocket, TAP, Pathao Pay, bank transfer, Bangla QR and crypto.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&family=Hind+Siliguri:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f3f5f9;--sf:#fff;--sf2:#eaeef5;--tx:#0f1424;--mu:#59627d;--bd:#d9dfeb;--ac:#0a8f6a;--ac2:#2563eb;--acs:#dcf5ec;--wn:#a16207;--sh:0 12px 40px rgba(15,20,36,.08);--g1:rgba(10,143,106,.16);--g2:rgba(37,99,235,.14)}
-@media(prefers-color-scheme:dark){:root{--bg:#090c16;--sf:#121728;--sf2:#1a2036;--tx:#eef2ff;--mu:#97a1c2;--bd:#262d49;--ac:#2ee6b0;--ac2:#6aa0ff;--acs:#10302b;--wn:#fbbf24;--sh:0 12px 40px rgba(0,0,0,.5);--g1:rgba(46,230,176,.14);--g2:rgba(106,160,255,.13)}}
+:root{--bg:#f5f3ee;--sf:#fffefb;--sf2:#ece9e0;--tx:#1b1a17;--mu:#67635a;--ln:#dfdbcf;--ac:#1d6b4f;--on:#fff;--wn:#8a5a00;color-scheme:light dark;
+--f:"Hanken Grotesk","Hind Siliguri",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--m:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
+@media(prefers-color-scheme:dark){:root{--bg:#141310;--sf:#1c1b17;--sf2:#27251f;--tx:#f0ede4;--mu:#a09b8e;--ln:#34312a;--ac:#4cc38f;--on:#0c1a13;--wn:#e8b84a}}
 *{box-sizing:border-box;margin:0}
-:root{--f:"Plus Jakarta Sans","Hind Siliguri",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--m:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-body{font:16px/1.55 var(--f);background:radial-gradient(700px 420px at 8% -5%,var(--g1),transparent 70%),radial-gradient(600px 400px at 100% 0,var(--g2),transparent 70%),var(--bg);background-attachment:fixed;color:var(--tx);min-height:100vh;display:flex;flex-direction:column}
-svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+body{font:16px/1.55 var(--f);background:var(--bg);color:var(--tx);min-height:100vh;display:flex;flex-direction:column}
+svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 :focus-visible{outline:3px solid var(--ac);outline-offset:2px}
-.wrap{width:100%;max-width:720px;margin:0 auto;padding:0 20px}
-header{display:flex;align-items:center;gap:10px;padding:22px 0;font-weight:700}
-.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--ac),var(--ac2));display:grid;place-items:center;color:#06120e}
-.hero{padding:28px 0 36px;text-align:center}
-h1{font-size:clamp(2.1rem,6vw,3.2rem);line-height:1.08;letter-spacing:-.03em;margin-bottom:14px}
-h1 em{font-style:normal;background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.lead{color:var(--mu);max-width:520px;margin:0 auto}
-.card{background:var(--sf);border:1px solid var(--bd);border-radius:20px;box-shadow:var(--sh);padding:22px}
-.lbl{display:block;font-weight:600;font-size:.88rem;margin-bottom:8px}
-.hint{color:var(--mu);font-size:.84rem}
-.sec{margin-bottom:32px}
-.sec h2{font-size:1.15rem;letter-spacing:-.01em;margin-bottom:14px}
-.wg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.w{border:1.5px solid var(--bd);border-radius:18px;padding:16px;background:var(--sf);display:flex;flex-direction:column;gap:12px;transition:border-color .2s,transform .2s}
-.w:hover{border-color:var(--ac);transform:translateY(-2px)}
-.w-h{display:flex;align-items:center;gap:12px;font-weight:700}
-.badge{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-weight:800;font-size:1.1rem}
-.num{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--sf2);border-radius:12px;padding:5px 5px 5px 12px;min-height:48px}
-.num code{font:600 .95rem var(--m);word-break:break-all}
-.ib{width:42px;height:42px;border:0;border-radius:10px;background:var(--acs);color:var(--ac);cursor:pointer;display:grid;place-items:center;flex:none;transition:.15s}
-.ib.done{background:var(--ac);color:#06120e}
-.ib:hover{filter:brightness(1.15)}.ib:active{transform:scale(.94)}
-.btn{min-height:48px;border:0;border-radius:13px;background:linear-gradient(135deg,var(--ac),var(--ac2));color:#06120e;font:inherit;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;padding:0 16px;margin-top:auto;transition:transform .15s,box-shadow .2s}
-.btn:hover{box-shadow:0 8px 26px rgba(46,200,160,.3)}.btn:active{transform:scale(.98)}
-.btn[aria-disabled=true]{background:transparent;color:var(--mu);border:1.5px dashed var(--bd);box-shadow:none;cursor:not-allowed;pointer-events:none}
-.qrrow{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
-.qr{width:200px;max-width:100%;aspect-ratio:1;border-radius:18px;border:2px dashed var(--bd);background:var(--sf2);display:grid;place-items:center;color:var(--mu);padding:14px;text-align:center;overflow:hidden}
-.qr img{width:100%;height:100%;object-fit:contain;background:#fff;border-radius:10px}
-.qr svg.i{width:44px;height:44px}
-.tokens{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin-bottom:16px}
-.tk{border:1.5px solid var(--bd);background:var(--sf2);color:var(--tx);border-radius:14px;min-height:52px;font:inherit;font-weight:700;cursor:pointer;transition:.2s}
-.tk:hover{border-color:var(--ac)}
-.tk[aria-checked=true]{border-color:var(--ac);background:var(--acs);color:var(--ac)}
-.tag{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:99px;background:var(--acs);color:var(--ac);font-weight:700;font-size:.85rem}
-.alert{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:14px;margin-top:14px;font-size:.9rem;border:1px solid var(--wn);background:color-mix(in srgb,var(--wn) 11%,var(--sf))}
-.alert svg{color:var(--wn);margin-top:2px}
-.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,30px);opacity:0;pointer-events:none;background:var(--tx);color:var(--bg);padding:12px 18px;border-radius:14px;display:flex;gap:10px;align-items:center;font-weight:600;transition:.25s;z-index:50;max-width:92vw}
+[hidden]{display:none!important}
+.wrap{width:100%;max-width:680px;margin:0 auto;padding:0 20px}
+header{padding:28px 0 8px;font-weight:700}
+h1{font-size:clamp(1.9rem,6vw,2.5rem);line-height:1.12;letter-spacing:-.025em;margin:28px 0 12px}
+.lead{color:var(--mu);max-width:52ch}
+section{margin-top:44px;border-top:1px solid var(--ln);padding-top:18px}
+h2{font-size:1.05rem;font-weight:700;margin-bottom:4px}
+.sub{color:var(--mu);font-size:.9rem;margin-bottom:6px}
+/* rows */
+.row{display:grid;grid-template-columns:minmax(120px,170px) 1fr auto;gap:8px 16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--ln)}
+.row:last-child{border-bottom:0}
+.id{display:flex;align-items:center;gap:12px;font-weight:700}
+.mk{width:36px;height:36px;border-radius:9px;display:grid;place-items:center;font-weight:700;flex:none}
+.val{font:500 .95rem var(--m);word-break:break-all;min-width:0}
+.val.none{font:400 .92rem var(--f);color:var(--mu)}
+.act{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.b{min-height:44px;padding:0 14px;border-radius:10px;border:1px solid var(--ln);background:var(--sf);color:var(--tx);font:inherit;font-weight:500;font-size:.92rem;display:inline-flex;align-items:center;gap:7px;cursor:pointer;text-decoration:none;transition:background .15s,border-color .15s}
+.b:hover{border-color:var(--ac)}.b:active{background:var(--sf2)}
+.b.p{background:var(--ac);border-color:var(--ac);color:var(--on)}
+.b.done{background:var(--ac);border-color:var(--ac);color:var(--on)}
+@media(max-width:600px){.row{grid-template-columns:1fr;gap:10px}.act{justify-content:flex-start}}
+/* bank */
+.bank .row{grid-template-columns:130px 1fr auto}
+.bank .row>span:first-child{color:var(--mu);font-size:.92rem}
+@media(max-width:600px){.bank .row{grid-template-columns:1fr auto;gap:2px 12px}.bank .row>span:first-child{grid-column:1/-1}}
+.bank .head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+/* qr inline */
+.qrin{display:flex;gap:20px;align-items:center;flex-wrap:wrap;padding-top:10px}
+.qrin img{width:190px;max-width:100%;border-radius:12px;background:#fff;border:1px solid var(--ln)}
+.qrin p{color:var(--mu);max-width:30ch;font-size:.92rem}
+/* crypto */
+.seg{display:inline-flex;background:var(--sf2);border-radius:11px;padding:3px;gap:3px;margin:10px 0 14px}
+.seg button{min-height:42px;min-width:84px;border:0;border-radius:8px;background:transparent;color:var(--mu);font:inherit;font-weight:700;cursor:pointer}
+.seg button[aria-checked=true]{background:var(--sf);color:var(--tx);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.net{font-size:.92rem;color:var(--mu);margin-bottom:8px}.net b{color:var(--tx)}
+.addr{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 14px;border:1px solid var(--ln);border-radius:12px;background:var(--sf)}
+.addr code{font:500 .88rem var(--m);word-break:break-all}
+.note{margin-top:14px;padding-left:12px;border-left:3px solid var(--wn);font-size:.9rem;color:var(--mu)}
+/* dialog */
+dialog{border:0;padding:0;border-radius:18px;background:var(--sf);color:var(--tx);width:min(360px,92vw);margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(10,10,8,.55)}
+.dl{padding:18px 18px 22px;text-align:center}
+.dl-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;text-align:left;font-weight:700}
+.dl img{width:100%;border-radius:12px;background:#fff;border:1px solid var(--ln)}
+.dl p{margin-top:12px;color:var(--mu);font-size:.9rem}
+@media(max-width:600px){dialog{margin:auto 0 0;width:100%;max-width:none;border-radius:18px 18px 0 0;padding-bottom:env(safe-area-inset-bottom)}}
+/* whatsapp */
+.wa{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));z-index:40;height:56px;display:flex;align-items:center;border-radius:99px;background:#25d366;color:#fff;text-decoration:none;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.25);animation:bob 3.2s ease-in-out infinite}
+.wa::before{content:"";position:absolute;inset:0;border-radius:inherit;border:2px solid #25d366;animation:ring 2.6s ease-out infinite;pointer-events:none}
+.wa .ic{width:56px;height:56px;display:grid;place-items:center}
+.wa .ic svg{width:28px;height:28px;stroke-width:1.8}
+.wa .tx{max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .3s,padding .3s}
+.wa:hover .tx,.wa:focus-visible .tx{max-width:170px;padding-right:18px}
+@keyframes ring{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.65);opacity:0}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,24px);opacity:0;pointer-events:none;background:var(--tx);color:var(--bg);padding:11px 16px;border-radius:10px;font-weight:500;font-size:.92rem;transition:.22s;z-index:60;max-width:90vw}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-footer{padding:26px 20px 34px;text-align:center;color:var(--mu);font-size:.9rem;border-top:1px solid var(--bd);margin-top:auto}
-footer strong{color:var(--tx)}
-.wa{position:fixed;right:max(20px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));z-index:40;display:flex;align-items:center;gap:0;height:60px;border-radius:99px;background:#25d366;color:#fff;text-decoration:none;font-weight:700;box-shadow:0 10px 28px rgba(37,211,102,.45);animation:waBob 3.2s ease-in-out infinite;transition:box-shadow .2s}
-.wa::before,.wa::after{content:"";position:absolute;inset:0;border-radius:inherit;border:2px solid #25d366;animation:waPulse 2.4s ease-out infinite;pointer-events:none}
-.wa::after{animation-delay:1.2s}
-.wa .ic{width:60px;height:60px;display:grid;place-items:center;flex:none}
-.wa .ic svg{width:30px;height:30px;stroke-width:1.8}
-.wa .tx{max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .3s ease,padding .3s ease}
-.wa:hover .tx,.wa:focus-visible .tx{max-width:180px;padding-right:20px}
-.wa:hover{box-shadow:0 14px 34px rgba(37,211,102,.6)}
-@keyframes waPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.7);opacity:0}}
-@keyframes waBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-main{padding-bottom:70px}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}.wa,.wa::before,.wa::after{animation:none!important}.wa::before,.wa::after{display:none}}
+main{padding-bottom:90px}
+footer{margin-top:auto;padding:22px 20px 30px;text-align:center;color:var(--mu);font-size:.88rem;border-top:1px solid var(--ln)}
+footer b{color:var(--tx);font-weight:700}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}.wa{animation:none}.wa::before{display:none}}
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-<symbol id="heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></symbol>
-<symbol id="check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
-<symbol id="warn" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></symbol>
 <symbol id="copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
 <symbol id="link" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
 <symbol id="qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h3M20 17v4"/></symbol>
-<symbol id="wa" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><path d="M9.2 8.6c-.3.6-.2 1.700.8 3.100 1 1.400 2.300 2.300 3.500 2.600.8.200 1.400-.3 1.600-.8l-1.500-1-.7.600c-.7-.3-1.500-1-1.900-1.800l.6-.7-1-1.500z"/></symbol>
-<symbol id="mtn" viewBox="0 0 24 24"><path d="m3 20 6-11 4 7 2-3 6 7z"/></symbol>
+<symbol id="x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+<symbol id="wa" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><path d="M9.2 8.6c-.3.6-.2 1.7.8 3.1 1 1.4 2.3 2.3 3.5 2.6.8.2 1.4-.3 1.6-.8l-1.5-1-.7.6c-.7-.3-1.5-1-1.9-1.8l.6-.7-1-1.5z"/></symbol>
 </svg>
 
 <div class="wrap">
-<header><div class="logo"><svg class="i" aria-hidden="true"><use href="#heart"/></svg></div>Pabel's Projects</header>
+<header>Tasfiqul Alam Pabel</header>
 <main>
-<section class="hero">
-<h1>Keep great tools <em>free</em> for everyone.</h1>
-<p class="lead">Support the projects with a small contribution. Pick whichever method suits you.</p>
-</section>
+<h1>Support my projects</h1>
+<p class="lead">I build free web tools and Android apps. If something saved you time, you can chip in with any method below. Payments come straight to me.</p>
 
-<section class="sec"><h2>Mobile wallets</h2><div class="wg" id="wg"></div></section>
+<section><h2>Mobile wallets</h2><p class="sub">Use Send Money to the number shown.</p><div id="wallets"></div></section>
 
-<section class="sec"><h2>Bangla QR</h2>
-<div class="card qrrow"><div class="qr" id="qr-container"></div><p class="hint" style="max-width:260px">Scan with any Bangla QR enabled banking or wallet app.</p></div></section>
+<section class="bank"><div class="head"><div><h2>Bank transfer</h2><p class="sub" style="margin:0">Prime Bank PLC</p></div><div class="act"><button class="b" id="bankQr" type="button"><svg class="i"><use href="#qr"/></svg>Show QR</button></div></div><div id="bank"></div></section>
 
-<section class="sec"><h2>Crypto</h2>
-<div class="card">
-<span class="lbl" id="tl">Token</span>
-<div class="tokens" role="radiogroup" aria-labelledby="tl" id="tokens"></div>
-<div style="display:flex;flex-wrap:wrap;gap:8px"><span class="tag" id="cTok"></span><span class="tag"><svg class="i" style="width:16px;height:16px" aria-hidden="true"><use href="#mtn"/></svg>Avalanche C-Chain</span></div>
-<span class="lbl" style="margin-top:16px">Wallet address (same for every token)</span>
-<div class="num"><code id="cAddr"></code><button type="button" class="ib" id="cCopy" aria-label="Copy wallet address"><svg class="i"><use href="#copy"/></svg></button></div>
-<div class="alert" role="note"><svg class="i"><use href="#warn"/></svg><span>Send only on the Avalanche C-Chain network. Tokens sent on another chain cannot be recovered.</span></div>
-</div></section>
+<section><h2>Bangla QR</h2><p class="sub">Works with any bank or wallet app that supports Bangla QR.</p>
+<div class="qrin"><img id="bq" alt="Bangla QR code"><p id="bqE" hidden>QR is unavailable right now. Use one of the other methods.</p></div></section>
+
+<section><h2>Crypto</h2>
+<div class="seg" role="radiogroup" aria-label="Token" id="tokens"></div>
+<p class="net">Network: <b>Avalanche C-Chain</b>. Same address for every token.</p>
+<div class="addr"><code id="addr"></code><button class="b p" type="button" id="addrCopy"><svg class="i"><use href="#copy"/></svg>Copy</button></div>
+<p class="note">Send only on Avalanche C-Chain. Tokens sent on another network cannot be recovered.</p></section>
 </main>
 </div>
 
-<a class="wa" href="https://wa.me/@tasfiqulalampabel" target="_blank" rel="noopener" aria-label="Chat with me on WhatsApp"><span class="ic"><svg class="i" aria-hidden="true"><use href="#wa"/></svg></span><span class="tx">Chat on WhatsApp</span></a>
-<div class="toast" id="toast" role="status" aria-live="polite"><svg class="i"><use href="#check"/></svg><span id="toastTx"></span></div>
-<footer>Built and maintained by <strong>Tasfiqul Alam Pabel</strong> &middot; Thank you for your support.</footer>
+<dialog id="qrd" aria-labelledby="qrT"><div class="dl">
+<div class="dl-h"><span id="qrT"></span><button class="b" type="button" id="qrX" aria-label="Close"><svg class="i"><use href="#x"/></svg></button></div>
+<img id="qrI" alt=""><p id="qrE" hidden>QR is unavailable right now. Use the number or link instead.</p></div></dialog>
+
+<a class="wa" href="https://wa.me/@tasfiqulalampabel" target="_blank" rel="noopener" aria-label="Message me on WhatsApp"><span class="ic"><svg class="i" aria-hidden="true"><use href="#wa"/></svg></span><span class="tx">Message on WhatsApp</span></a>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<footer>Built by <b>Tasfiqul Alam Pabel</b></footer>
 
 <script>
 /* ===== EDIT THIS SECTION ===== */
+const NUMBER='01607442111'; /* same number for bKash, Nagad, Upay, Rocket, TAP */
 const CONFIG={
- /* number is optional (Pathao Pay has none). Leave url '' until ready. */
  wallets:[
-  {name:'bKash',letter:'b',bg:'#e2136e',fg:'#fff',number:'01607442111',url:''},
-  {name:'Nagad',letter:'N',bg:'#e8590c',fg:'#fff',number:'01607442111',url:''},
-  {name:'Upay',letter:'U',bg:'#f5b800',fg:'#1a1a1a',number:'01607442111',url:''},
-  {name:'Pathao Pay',letter:'P',bg:'#e5251b',fg:'#fff',number:'',url:'https://pathaopay.me/@tasfiqulalampabel'}],
- qrImage:'https://itspabel.github.io/Donate/bangla-qr.png', /* e.g. 'bangla-qr.png' */
+  {name:'bKash',mk:'b',bg:'#e2136e',fg:'#fff',number:NUMBER,qr:'qr/bkash.png'},
+  {name:'Nagad',mk:'N',bg:'#e8590c',fg:'#fff',number:NUMBER},
+  {name:'Upay',mk:'U',bg:'#f5b800',fg:'#1a1a1a',number:NUMBER},
+  {name:'Rocket',mk:'R',bg:'#8c3494',fg:'#fff',number:NUMBER,qr:'qr/rocket.png'},
+  {name:'TAP',mk:'T',bg:'#1d4ed8',fg:'#fff',number:NUMBER},
+  {name:'Pathao Pay',mk:'P',bg:'#e5251b',fg:'#fff',url:'https://pathaopay.me/@tasfiqulalampabel',qr:'qr/pathao-pay.png'}],
+ bank:{qr:'qr/bank.png',fields:[
+  ['Account name','MOHAMMAD TASFIQUL ALAM PABEL'],
+  ['Account number','2901223025483'],
+  ['Bank','Prime Bank PLC'],
+  ['Branch','Head Office'],
+  ['Routing number','170272689']]},
+ banglaQr:'https://itspabel.github.io/Donate/bangla-qr.png',
  cryptoAddress:'0x0B1734F5E0Ee4F74d3c77bc7c9aE5909373409EF',
  tokens:['USDT','USDC']
 };
@@ -128,7 +143,7 @@ const CONFIG={
 const $=s=>document.querySelector(s);
 const ico=id=>`<svg class="i" aria-hidden="true"><use href="#${id}"/></svg>`;
 let tt;
-function toast(t){$('#toastTx').textContent=t;const e=$('#toast');e.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('show'),2200)}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('show'),2000)}
 async function copy(v,l,btn){
  let ok=false;
  try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(v);ok=true}}catch(e){}
@@ -140,29 +155,44 @@ async function copy(v,l,btn){
   t.remove();if(btn)btn.focus();
  }
  toast(ok?l+' copied':'Copy failed. Select the text and copy it manually.');
- if(ok&&btn){btn._h=btn._h||btn.innerHTML;btn.classList.add('done');btn.innerHTML=ico('check');clearTimeout(btn._t);btn._t=setTimeout(()=>{btn.classList.remove('done');btn.innerHTML=btn._h},1600)}
+ if(ok&&btn){btn._h=btn._h||btn.innerHTML;btn.classList.add('done');btn.innerHTML=ico('check')+'Copied';clearTimeout(btn._t);btn._t=setTimeout(()=>{btn.classList.remove('done');btn.innerHTML=btn._h},1600)}
 }
+const copyBtn=(v,l,cls='')=>`<button class="b ${cls}" type="button" data-copy="${v}" data-label="${l}">${ico('copy')}Copy</button>`;
+const qrBtn=(t,s)=>`<button class="b" type="button" data-qr="${s}" data-title="${t}">${ico('qr')}QR</button>`;
 
 /* wallets */
-$('#wg').innerHTML=CONFIG.wallets.map((w,i)=>`<div class="w"><div class="w-h"><span class="badge" style="background:${w.bg};color:${w.fg}" aria-hidden="true">${w.letter}</span>${w.name}</div>
- ${w.number?`<div class="num"><code>${w.number}</code><button type="button" class="ib" data-i="${i}" aria-label="Copy ${w.name} number">${ico('copy')}</button></div>`:''}
- ${w.url?`<a class="btn" href="${w.url}" target="_blank" rel="noopener">${ico('link')}${w.number?'Open '+w.name:'Pay with '+w.name}</a>`:`<span class="btn" aria-disabled="true">Link coming soon</span>`}</div>`).join('');
-$('#wg').onclick=e=>{const b=e.target.closest('.ib');if(b){const w=CONFIG.wallets[+b.dataset.i];copy(w.number,w.name+' number',b)}};
+$('#wallets').innerHTML=CONFIG.wallets.map(w=>`<div class="row">
+ <div class="id"><span class="mk" style="background:${w.bg};color:${w.fg}" aria-hidden="true">${w.mk}</span>${w.name}</div>
+ ${w.number?`<div class="val">${w.number}</div>`:`<div class="val none">Payment link only</div>`}
+ <div class="act">${w.number?copyBtn(w.number,w.name+' number'):''}${w.qr?qrBtn(w.name,w.qr):''}${w.url?`<a class="b p" href="${w.url}" target="_blank" rel="noopener">${ico('link')}Open</a>`:''}</div></div>`).join('');
 
-/* QR */
-$('#qr-container').innerHTML = CONFIG.qrImage
-  ? `<img src="${CONFIG.qrImage}" alt="Bangla QR code for donations">`
-  : `<div>${ico('qr')}<p style="margin-top:8px;font-weight:600">QR coming soon</p></div>`;
+/* bank */
+$('#bank').innerHTML=CONFIG.bank.fields.map(([k,v])=>`<div class="row"><span>${k}</span><div class="val">${v}</div>${copyBtn(v,k)}</div>`).join('');
+$('#bankQr').dataset.qr=CONFIG.bank.qr;$('#bankQr').dataset.title='Prime Bank';
+
+/* bangla qr */
+const bq=$('#bq');bq.src=CONFIG.banglaQr;bq.onerror=()=>{bq.hidden=true;$('#bqE').hidden=false};
+
 /* crypto */
 let tok=CONFIG.tokens[0];
-function tokens(){
- $('#tokens').innerHTML=CONFIG.tokens.map(t=>`<button type="button" class="tk" role="radio" data-t="${t}" aria-checked="${t===tok}">${t}</button>`).join('');
- $('#cTok').textContent=tok;
-}
+function tokens(){$('#tokens').innerHTML=CONFIG.tokens.map(t=>`<button type="button" role="radio" data-t="${t}" aria-checked="${t===tok}">${t}</button>`).join('')}
 $('#tokens').onclick=e=>{const b=e.target.closest('button');if(b){tok=b.dataset.t;tokens()}};
-$('#cAddr').textContent=CONFIG.cryptoAddress;
-$('#cCopy').onclick=e=>copy(CONFIG.cryptoAddress,'Wallet address',e.currentTarget);
+$('#addr').textContent=CONFIG.cryptoAddress;
+$('#addrCopy').onclick=e=>copy(CONFIG.cryptoAddress,'Address',e.currentTarget);
 tokens();
+
+/* qr dialog */
+const dlg=$('#qrd'),qi=$('#qrI');
+function openQR(title,src){$('#qrT').textContent=title+' QR';qi.hidden=false;$('#qrE').hidden=true;qi.alt=title+' QR code';qi.src=src;dlg.showModal()}
+qi.onerror=()=>{qi.hidden=true;$('#qrE').hidden=false};
+$('#qrX').onclick=()=>dlg.close();
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+
+/* delegated clicks */
+document.addEventListener('click',e=>{
+ const c=e.target.closest('[data-copy]');if(c)return copy(c.dataset.copy,c.dataset.label,c);
+ const q=e.target.closest('[data-qr]');if(q)openQR(q.dataset.title,q.dataset.qr);
+});
 </script>
 </body>
-  </html>
+</html>
