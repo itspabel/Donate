@@ -217,6 +217,10 @@ footer{margin-top:auto;padding:24px;text-align:center;color:var(--mu);font-size:
 @media(max-width:860px){.hero{grid-template-columns:1fr;gap:20px;padding:20px 0 52px}.stage{min-height:400px}.cv{grid-template-columns:1fr}.cv>div{border-right:0;border-bottom:1px solid var(--ln)}.cv>div:last-child{border-bottom:0}}
 @media(max-width:640px){.wrap{padding:0 18px}nav{display:none}.row{grid-template-columns:1fr;gap:10px}.act{justify-content:flex-start}.fr{grid-template-columns:1fr auto;gap:2px 12px}.fr>span{grid-column:1/-1}.tabs button{padding:0 13px}.sec{padding:48px 0}dialog{margin:auto 0 0;width:100%;max-width:none;border-radius:20px 20px 0 0;padding-bottom:env(safe-area-inset-bottom)}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+
+.lnk{background:none;border:0;padding:0;font:inherit;color:var(--mu);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.lnk:hover{color:var(--tx)}
+.oth{margin-top:20px;font-size:.92rem;color:var(--mu)}
 </style>
 </head>
 <body>
@@ -269,7 +273,7 @@ footer{margin-top:auto;padding:24px;text-align:center;color:var(--mu);font-size:
 </div>
 
 <section class="sec" id="pay">
-<div class="rv"><h2 class="eh">Buy me a cha</h2><p class="sub">Pick an amount, choose how you want to pay, and the details will show up.</p></div>
+<div class="rv"><h2 class="eh">Buy me a cha</h2><p class="sub">Pick an amount, add your name and email, and pay on my secure checkout page.</p></div>
 <div class="flow rv">
 <ol class="steps" id="steps" aria-label="Progress"></ol>
 <div class="step" id="s1" tabindex="-1">
@@ -280,6 +284,19 @@ footer{margin-top:auto;padding:24px;text-align:center;color:var(--mu);font-size:
 <p class="err" id="amtE" role="alert"></p>
 <button class="b p lg" type="submit">Next<svg class="i arr" aria-hidden="true"><use href="#i-link"/></svg></button>
 </form></div>
+<div class="step" id="sp" tabindex="-1" hidden>
+<div class="sum"><div><small>Amount</small><b id="spAmt"></b></div><button class="b" id="spChg" type="button">Change</button></div>
+<h3 class="fh3">Your details</h3>
+<p class="sub">Add your name and email, then pay on my secure checkout page. You will choose bKash, Nagad, Upay, Rocket or TAP there.</p>
+<form id="pf" novalidate>
+<div class="fld"><label for="pfn">Your name</label><input class="fi" id="pfn" autocomplete="name" maxlength="60" placeholder="Your name"></div>
+<div class="fld"><label for="pfe">Email</label><input class="fi" id="pfe" type="email" inputmode="email" autocomplete="email" maxlength="80" placeholder="you@example.com"></div>
+<input class="hp" id="pfh" tabindex="-1" autocomplete="off" aria-hidden="true">
+<p class="err" id="pfE" role="alert"></p>
+<div class="acts3"><button class="b p lg" type="submit" id="pfb">Pay</button></div>
+</form>
+<p class="oth"><button class="lnk" type="button" id="other">Prefer bank, crypto or a manual transfer?</button></p>
+</div>
 <div class="step" id="s2" tabindex="-1" hidden>
 <div class="sum"><div><small>Amount</small><b id="sumAmt"></b></div><button class="b" id="chg" type="button">Change</button></div>
 <div class="tabs" role="tablist" aria-label="Payment type" id="tabs"><span class="pill" id="pill"></span>
@@ -289,6 +306,7 @@ footer{margin-top:auto;padding:24px;text-align:center;color:var(--mu);font-size:
 <p class="sub tabsub" id="tabSub"></p>
 <div id="mg" role="tabpanel" aria-labelledby="t-w"></div>
 <div class="panel" id="det" hidden></div>
+<p class="oth"><button class="lnk" type="button" id="online">Pay online instead (bKash, Nagad, Upay, Rocket, TAP)</button></p>
 </div>
 <div class="step" id="s3" tabindex="-1" hidden>
 <h3 class="fh3">Confirm your payment</h3>
@@ -335,6 +353,8 @@ footer{margin-top:auto;padding:24px;text-align:center;color:var(--mu);font-size:
 const CHA_PRICE=50; /* price of one cha, used for the quick amounts */
 /* Confirmation emails are sent by your own PHP endpoint on alwaysdata (folder support-api/). Put its public address here. */
 const API_URL='https://pabel.alwaysdata.net/support/send.php';
+/* Profess0rPay checkout (wallets marked pp:1 below use it). Empty string = every wallet stays manual. */
+const PAY_URL='https://pabel.alwaysdata.net/support/pay.php';
 const NUMBER='01607442111'; /* same number for bKash, Nagad, Upay, Rocket, TAP */
 const CONFIG={
  wallets:[
@@ -381,7 +401,8 @@ const copyBtn=(v,l)=>`<button class="b" type="button" data-copy="${v}" data-labe
 const qrBtn=(t,s)=>`<button class="b" type="button" data-qr="${s}" data-title="${t}">${ico('qr')}QR</button>`;
 
 /* ===== buy-a-cha flow: amount -> method (tabs) -> details + instructions ===== */
-const S={amt:0,step:1,tab:'w',m:null,tok:CONFIG.tokens[0]};
+const S={amt:0,step:1,tab:'w',m:null,tok:CONFIG.tokens[0],flow:PAY_URL?'pp':'manual'};
+const esc=v=>String(v).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const tkf=n=>'Tk '+Number(n).toLocaleString('en-US');
 const METHODS=[
  ...CONFIG.wallets.map(w=>({id:w.icon,t:'w',name:w.name,w})),
@@ -392,13 +413,14 @@ const TABSUB={w:'Send Money to a number from your wallet app.',b:'Transfer from 
 const mIcon=m=>m.w?`<svg class="mk" aria-hidden="true"><use href="#ic-${m.w.icon}"/></svg>`:`<span class="tic">${ico(m.ic)}</span>`;
 
 function steps(){
- const cur=S.step>=4?S.step:(S.m?3:S.step),L=['Amount','Method','Pay','Confirm'];
+ let cur=S.step>=4?S.step:(S.m?3:S.step),L=['Amount','Method','Pay','Confirm'];
+ if(S.flow==='pp'){L=['Amount','Details','Done'];cur=S.step===1?1:S.step===5?3:2}
  $('#steps').innerHTML=L.map((l,i)=>{const n=i+1,st=n<cur?'done':n===cur?'on':'';
   return `<li class="${st}"><button type="button" class="sb" data-s="${n}" ${n>cur?'disabled':''} ${n===cur?'aria-current="step"':''}><span class="n">${n<cur?CHECK:n}</span><span class="sl">${l}</span></button></li>`}).join('');
 }
 function pill(){const t=document.querySelector('#tabs [aria-selected=true]'),p=$('#pill');if(!t||!t.offsetWidth)return;p.style.width=t.offsetWidth+'px';p.style.transform=`translateX(${t.offsetLeft}px)`}
 function go(n,focus){
- S.step=n;const map={1:'#s1',2:'#s2',4:'#s3',5:'#s4'};
+ S.step=n;const map={1:'#s1',2:'#s2',3:'#sp',4:'#s3',5:'#s4'};
  Object.entries(map).forEach(([k,id])=>$(id).hidden=+k!==n);steps();
  if(n===2)requestAnimationFrame(pill);
  if(focus&&map[n])$(map[n]).focus({preventScroll:true});
@@ -412,7 +434,9 @@ function chips(){
 }
 amt.oninput=()=>{amt.value=amt.value.replace(/\D/g,'').slice(0,6);err('');chips()};
 $('#chips').onclick=e=>{const b=e.target.closest('button');if(b){amt.value=b.dataset.v;err('');chips()}};
-function enter2(){S.m=S.tab==='b'?'bank':null;renderMethods();details();go(2,true)}
+function enter2(){
+ if(S.flow==='pp'){S.m=null;$('#spAmt').textContent=tkf(S.amt);$('#pfb').textContent='Pay '+tkf(S.amt);$('#pfE').textContent='';go(3,true);return}
+ S.m=S.tab==='b'?'bank':null;renderMethods();details();go(2,true)}
 $('#af').onsubmit=e=>{
  e.preventDefault();const v=+amt.value;
  if(!v||v<10){err('Enter at least Tk 10.');amt.focus();return}
@@ -420,8 +444,11 @@ $('#af').onsubmit=e=>{
  S.amt=v;err('');enter2();
 };
 $('#chg').onclick=()=>{S.m=null;details();go(1,true);amt.focus()};
+$('#spChg').onclick=()=>{go(1,true);amt.focus()};
+$('#other').onclick=()=>{S.flow='manual';enter2()};
+$('#online').onclick=()=>{S.flow='pp';S.m=null;details();enter2()};
 $('#steps').onclick=e=>{const b=e.target.closest('.sb');if(!b||b.disabled)return;const n=+b.dataset.s;
- if(n===1){S.m=null;details();go(1,true)}else if(n===2)enter2();else if(n===3&&S.m&&S.step===4)go(2,true)};
+ if(n===1){S.m=null;details();go(1,true)}else if(n===2)enter2();else if(n===3&&S.flow!=='pp'&&S.m&&S.step===4)go(2,true)};
 /* step 2: tabs + method tiles */
 const TK=['w','b','c'];
 function tab(k,focus){
@@ -476,7 +503,6 @@ $('#det').onclick=e=>{const t=e.target.closest('[data-t]');if(t){S.tok=t.dataset
 renderMethods();chips();steps();
 
 /* ===== confirm form -> emails -> thanks ===== */
-const esc=v=>String(v).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const TRX={w:['Transaction ID (TrxID)','You will find it in the confirmation SMS or your payment history.'],bank:['Transaction or reference number','Shown in your banking app after the transfer.'],crypto:['Transaction hash (TxID)','Copy it from your wallet or exchange after sending.'],exch:['Transfer or order ID','Shown in the exchange app after the transfer.']};
 function info(){
  const m=METHODS.find(x=>x.id===S.m),f=Object.fromEntries(CONFIG.bank.fields);
@@ -525,6 +551,44 @@ $('#again').onclick=()=>{S.m=null;$('#ct').value='';details();go(1,true);amt.foc
 /* bangla qr */
 const bq=$('#bq');bq.src=CONFIG.banglaQr;bq.onerror=()=>{$('#qrw').hidden=true;$('#bqE').hidden=false};
 bq.onload=()=>$('#qrw').style.setProperty('--qh',(bq.clientHeight-2)+'px');
+
+/* ===== Profess0rPay checkout ===== */
+$('#pf').onsubmit=async e=>{
+ e.preventDefault();
+ const E=$('#pfE'),b=$('#pfb'),n=$('#pfn').value.trim(),m=$('#pfe').value.trim();
+ if(n.length<2){E.textContent='Please enter your name.';$('#pfn').focus();return}
+ if(!/^\S+@\S+\.\S+$/.test(m)){E.textContent='Please enter a valid email address.';$('#pfe').focus();return}
+ E.textContent='';const t=b.textContent;b.disabled=true;b.textContent='Opening checkout...';
+ try{
+  const r=await fetch(PAY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'create',name:n,email:m,amount:S.amt,method:'Online',hp:$('#pfh').value})});
+  const j=await r.json().catch(()=>({}));
+  if(r.status===429||j.error==='rate'){E.textContent='Too many attempts. Please try again later.';throw 0}
+  if(!r.ok||!j.ok||!j.url)throw 0;
+  location.href=j.url;return;
+ }catch(x){if(x!==0)console.error(x);if(!E.textContent)E.textContent='Could not open the checkout right now. Please try again, or use the manual option below.'}
+ b.disabled=false;b.textContent=t;
+};
+/* coming back from the checkout: ?pp_status=completed&transaction_ref=... */
+(function(){
+ const q=new URLSearchParams(location.search),ref=q.get('transaction_ref');
+ if(!PAY_URL||!ref||!q.get('pp_status'))return;
+ history.replaceState(null,'',location.pathname+'#pay');
+ let tries=0;
+ const rows=j=>[['Amount',j.amount],['Method',j.method],['Transaction ID',j.trx_id],['Date',j.date]].filter(r=>r[1]).map(([k,v])=>`<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
+ const tick=async()=>{
+  try{
+   const r=await fetch(PAY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'status',ref})});
+   const j=await r.json();
+   if(j.ok&&j.paid){
+    $('#tyH').textContent='Thank you'+(j.name?', '+j.name:'')+'.';
+    $('#tyP').textContent=`I have your payment. A confirmation email is on its way to ${j.email}. If you do not see it, check your spam folder.`;
+    $('#tyRec').innerHTML=rows(j);go(5,true);return}
+   if(j.ok&&tries++<3){setTimeout(tick,2500);return}
+  }catch(x){}
+  toast('I could not confirm that payment yet. If you paid, message me on WhatsApp.');
+ };
+ tick();
+})();
 
 /* qr dialog */
 const dlg=$('#qrd'),qi=$('#qrI');
